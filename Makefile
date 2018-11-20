@@ -12,4 +12,5 @@ restoreRetrievedPackageSandbox:
 
 .PHONY: populateChangeset
 populateChangeset:
+	./build-helper -tag-package "$(name)"
 	ant -propertyfile ./build.properties populateChangeset

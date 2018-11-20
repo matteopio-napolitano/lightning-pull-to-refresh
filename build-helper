@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# This method Inserts fullName field into package.xml
+function addPackageName {
+    awk '!/<fullName.*>/' src/package.xml > src/tmp
+    (awk -v content="    <fullName>$1<\/fullName>" '/<Package.*>/{print;print content;next}1' src/tmp) > src/package.xml
+    rm src/tmp
+}
+
+if [ "$1" == "-tag-package" ]; then
+  addPackageName $2
+  echo "Package has been marked with name $2"
+  exit 0
+fi
