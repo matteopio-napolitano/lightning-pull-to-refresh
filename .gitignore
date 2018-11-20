@@ -1,0 +1,6 @@
+.forceCode/
+.sfdx/
+.vscode/
+build.properties
+force.json
+sfdx-project.json

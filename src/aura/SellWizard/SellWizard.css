@@ -1,0 +1,23 @@
+.THIS {
+    background-color: white;
+}
+
+.THIS.mainContainer {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 4em;
+    border: 3px solid red;
+}
+
+.THIS .childContainer {
+    position: absolute;
+    top: 4.5em;
+    left: 0.75em;
+    right: 0.75em;
+    bottom: 0.75em;
+    overflow-y: auto;
+    border: 3px solid lightseagreen;
+}

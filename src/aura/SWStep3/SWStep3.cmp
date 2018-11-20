@@ -1,0 +1,42 @@
+<aura:component implements="lightning:availableForFlowScreens" access="global">
+    <div aura:id="mainContainer" class="mainContainer">
+        <div class="childContainer">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur urna felis, dapibus sit amet porttitor
+            a, tincidunt in lacus. Mauris sit amet sapien dolor. Donec sit amet ex eleifend nibh porttitor
+            sollicitudin. Aliquam erat volutpat. Nulla facilisi. Pellentesque elit lectus, cursus eget rutrum eu,
+            ornare ac velit. Aenean rhoncus bibendum aliquet. Integer fringilla, metus ac rhoncus posuere, orci nulla
+            volutpat leo, nec malesuada felis leo ut felis. Ut a pretium ex, at finibus libero.
+
+            Morbi ac elit diam. Vestibulum eu nisl arcu. Morbi pretium imperdiet nibh, non congue tortor iaculis vitae.
+            Donec pretium mollis nulla in auctor. Maecenas id est libero. Nulla facilisi. Pellentesque faucibus mi vel
+            consequat elementum. Phasellus tempus enim ac aliquet scelerisque. Fusce sit amet ligula lacus. Vivamus
+            dictum ultrices commodo. Praesent euismod risus ut metus malesuada lobortis. Mauris at tempor tortor. Nunc
+            sit amet nulla ac risus sodales consequat. Praesent et ligula nec lorem placerat imperdiet.
+
+            Suspendisse eget ex et dolor tempus tempor. Ut nec tortor ultrices, commodo massa at, cursus diam. Nunc
+            viverra ligula a aliquam sollicitudin. Proin eget risus faucibus, blandit sapien eu, porttitor neque.
+            Nullam dictum lacinia augue. Sed pellentesque leo vitae volutpat condimentum. Pellentesque molestie vitae
+            dolor a sodales. Vestibulum pharetra, dolor ac sagittis pretium, nisl lorem cursus elit, ut semper ante
+            mauris ac augue. Etiam imperdiet, magna at posuere faucibus, risus nisl luctus erat, nec sodales mauris
+            lacus placerat orci. Sed ut imperdiet arcu, id vehicula massa. Cras et nisi non nibh ultrices maximus.
+            Integer a arcu in dui dapibus congue aliquam nec risus. Donec convallis hendrerit mi, sed vehicula augue
+            lobortis eget. Sed euismod non massa vitae pharetra. In in quam ornare, rhoncus nisl non, tincidunt risus.
+
+            Aenean a aliquam nunc. Nam luctus tempus ligula, id suscipit sapien efficitur vitae. Vestibulum a ultricies
+            ipsum, eu mattis ipsum. Cras eros eros, interdum posuere pellentesque eget, sollicitudin sit amet tortor.
+            Sed quis maximus mauris, ut dictum sapien. Vivamus massa ipsum, aliquet ac convallis eget, mattis consequat
+            ligula. Cras vel posuere est. Vivamus consectetur faucibus sapien, mattis pretium est laoreet sed. Duis ac
+            luctus tellus. Vestibulum ligula turpis, elementum volutpat viverra nec, vulputate ut tortor. Nam ac neque
+            varius mauris lobortis suscipit eget sed turpis.
+
+            Fusce ultrices, arcu sit amet imperdiet blandit, tellus est bibendum purus, ut aliquet lorem ex sed lorem.
+            Nunc eget dolor aliquet, sollicitudin felis tincidunt, fringilla mauris. Phasellus commodo viverra lorem at
+            interdum. Sed condimentum ligula id finibus dapibus. Nullam sem ligula, tempor vitae interdum eget,
+            dignissim at massa. Fusce scelerisque augue id ultricies finibus. Ut ac fringilla lectus, sed fringilla
+            nisl. Maecenas bibendum ultrices lectus nec sodales. Donec lacinia rutrum velit et posuere. Donec purus mi,
+            elementum quis dignissim commodo, dapibus id metus. Pellentesque elementum nisl a purus ullamcorper, vitae
+            imperdiet ipsum finibus. Proin id nibh suscipit, pulvinar metus nec, convallis nunc. Suspendisse potenti.
+            Morbi urna ipsum, tristique vel congue vitae, maximus eget dolor.
+        </div>
+    </div>
+</aura:component>

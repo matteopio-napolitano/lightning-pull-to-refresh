@@ -1,0 +1,17 @@
+<aura:component implements="lightning:availableForFlowScreens,force:appHostable,flexipage:availableForAllPageTypes" access="global">
+
+    <!-- Attributes >> Pull-to-Refresh -->
+    <aura:attribute name="pullToRefreshEnabled" type="Boolean" default="true" />
+
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <div aura:id="mainContainer" class="{!v.pullToRefreshEnabled ? 'mainContainer' : ''}">
+        <!-- Page Container -->
+        <div class="{!v.pullToRefreshEnabled ? 'childContainer' : ''}">
+            <!-- Flow -->
+            <lightning:flow aura:id="flowData" />
+        </div>
+    </div>
+
+</aura:component>
