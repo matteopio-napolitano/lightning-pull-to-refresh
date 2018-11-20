@@ -1,51 +1,68 @@
-<project name="salesforce" default="deployCode" basedir="." xmlns:sf="antlib:com.salesforce">
-    <property environment="env"/>
+<project name="salesforce" default="deployCode" basedir="." 
+  xmlns:sf="antlib:com.salesforce">
+  <property environment="env"/>
 
-    <!-- Setting default value for username, password and session id properties to empty string 
+  <!-- Setting default value for username, password and session id properties to empty string 
          so unset values are treated as empty. Without this, ant expressions such as ${sf.username}
          will be treated literally.
     -->
-    <condition property="sf.username" value=""> <not> <isset property="sf.username"/> </not> </condition>
-    <condition property="sf.password" value=""> <not> <isset property="sf.password"/> </not> </condition>
+  <condition property="sf.username" value="">
+    <not>
+      <isset property="sf.username"/>
+    </not>
+  </condition>
+  <condition property="sf.password" value="">
+    <not>
+      <isset property="sf.password"/>
+    </not>
+  </condition>
 
-    <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce" classpath="${ant.tool.path}">
-    </taskdef>
+  <taskdef resource="com/salesforce/antlib.xml" uri="antlib:com.salesforce" classpath="${ant.tool.path}">
+  </taskdef>
 
-    <!-- Retrieve metadata for all the packages Unpackaged -->
-    <target name="retrieveUnpackaged">
-      <mkdir dir="srcRetrieved"/>
-      <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget="srcRetrieved" unpackaged="${sf.pkgName}"/>
-    </target>
+  <!-- Retrieve metadata for all the packages Unpackaged -->
+  <target name="retrieveUnpackaged">
+    <mkdir dir="srcRetrieved"/>
+    <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget="srcRetrieved" unpackaged="${sf.pkgName}"/>
+  </target>
 
-    <!-- Shows deploying code & running tests for code in directory -->
-    <target name="deployCode">
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" />
-    </target>
-    
-    <!-- Shows deploying code & running tests for code in directory -->
-    <target name="validateCode">
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" checkOnly="true" testLevel="RunSpecifiedTests"/>
-      <!--Write all the desired test classes which you want to be run during the validation-->
-        <!--runTest>MyClass</runTest-->
-      <!--/sf:deploy-->
-    </target>
-	
-    <!-- Shows cancel deployment of deploy request either pending or in progress. Set property sf.requestId to Id of pending or in progress deploy request -->
-    <target name="cancelDeploy">
-      <sf:cancelDeploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" requestId="${sf.requestId}"/>
-    </target>
+  <!-- Shows deploying code & running tests for code in directory -->
+  <target name="deployCode">
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" />
+  </target>
 
-    <!-- Retrieve the information of all items of a particular metadata type -->
-    <target name="listMetadata">
-      <sf:listMetadata username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" metadataType="${sf.metadataType}"/>
-    </target>
+  <!-- Shows deploying code & running tests for code in directory -->
+  <target name="validateCode">
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" checkOnly="true" testLevel="RunSpecifiedTests"/>
+    <!--Write all the desired test classes which you want to be run during the validation-->
+    <!--runTest>MyClass</runTest-->
+    <!--/sf:deploy-->
+  </target>
 
-    <!-- Retrieve the information on all supported metadata type -->
-    <target name="describeMetadata">
-      <sf:describeMetadata username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}"/>
-    </target>
+  <!-- Shows cancel deployment of deploy request either pending or in progress. Set property sf.requestId to Id of pending or in progress deploy request -->
+  <target name="cancelDeploy">
+    <sf:cancelDeploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" requestId="${sf.requestId}"/>
+  </target>
 
-    <target name="populateChangeset">
-      <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxpoll ="${sf.maxPoll}" deployroot="src" autoUpdatePackage="true" singlePackage="true"/>
-    </target>
+  <!-- Retrieve the information of all items of a particular metadata type -->
+  <target name="listMetadata">
+    <sf:listMetadata username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" metadataType="${sf.metadataType}"/>
+  </target>
+
+  <!-- Retrieve the information on all supported metadata type -->
+  <target name="describeMetadata">
+    <sf:describeMetadata username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}"/>
+  </target>
+
+  <target name="populateChangeset">
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxpoll ="${sf.maxPoll}" deployroot="src" autoUpdatePackage="true" singlePackage="true"/>
+  </target>
+
+  <target name="restoreRetrievedPackage">
+    <delete file="${sf.retrievedPackageZipFile}"/>
+    <zip destfile="${sf.retrievedPackageZipFile}" update="true">
+      <fileset dir="src/" includes="**/*"/>
+    </zip>
+    <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" zipFile="${sf.retrievedPackageZipFile}" rollbackOnError="true"/>
+  </target>
 </project>
