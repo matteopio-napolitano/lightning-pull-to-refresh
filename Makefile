@@ -15,4 +15,3 @@ populateChangeset:
 	./build-helper -tag-package "$(name)"
 	ant -propertyfile ./build.properties populateChangeset
 	./build-helper -tag-remove
-

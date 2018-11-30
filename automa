@@ -1,16 +1,23 @@
 #!/bin/bash
 
+## on top we have a retrieve
+## so we can potentially have changes!
+
 if git diff-index --quiet HEAD --; then
     # No changes
     echo "No changes! Lets' go on!!"
 else
     # Changes
+    git add .
+    git commit -m "automa retrieved code from org"
     git pull --rebase origin master
-    
+
     CONFLICTS=$(git ls-files -u | wc -l)
     if [ "$CONFLICTS" -gt 0 ] ; then
         echo "There is a merge conflict. Aborting"
         git merge --abort
         exit 1
+    else
+        echo "No conflict, so I will push retrieved changes to repository!"
     fi
 fi
