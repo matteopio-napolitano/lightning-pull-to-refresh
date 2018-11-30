@@ -7,8 +7,19 @@ function addPackageName {
     rm src/tmp
 }
 
+# This method Removes fullName field into package.xml
+function removePackageName {
+    awk '!/<fullName.*>/' src/package.xml > src/tmp
+    cat src/tmp > src/package.xml
+    rm src/tmp
+}
+
 if [ "$1" == "-tag-package" ]; then
-  addPackageName $2
+  addPackageName "$2"
   echo "Package has been marked with name $2"
+  exit 0
+elif [ "$1" == "-tag-remove" ]; then
+  removePackageName
+  echo "Package name has been removed"
   exit 0
 fi
