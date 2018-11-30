@@ -3,6 +3,8 @@
 ## on top we have a retrieve
 ## so we can potentially have changes!
 
+ant -propertyfile ./build.properties retrieveAutoma
+
 if git diff-index --quiet HEAD --; then
     # No changes
     echo "No changes! Lets' go on!!"
@@ -21,3 +23,5 @@ else
         echo "No conflict, so I will push retrieved changes to repository!"
     fi
 fi
+
+ant -propertyfile ./build.properties restoreAutoma

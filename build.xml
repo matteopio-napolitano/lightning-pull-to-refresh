@@ -27,6 +27,24 @@
     <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget="srcRetrieved" unpackaged="${sf.pkgName}"/>
   </target>
 
+  <!-- AUTOMA TARGETS : START -->
+  <target name="retrieveAutoma">
+    <copy todir="srcOriginal" >
+      <fileset dir="src" includes="**"/>
+    </copy>
+    <sf:retrieve username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" retrieveTarget="src" unpackaged="${sf.pkgName}"/>
+  </target>
+
+  <target name="restoreAutoma">
+    <delete dir="src" failonerror="true"/>
+    <mkdir dir="src"/>
+    <copy todir="src" >
+      <fileset dir="srcOriginal" includes="**"/>
+    </copy>
+    <delete dir="srcOriginal" failonerror="true"/>
+  </target>
+  <!-- AUTOMA TARGETS : END -->
+
   <!-- Shows deploying code & running tests for code in directory -->
   <target name="deployCode">
     <sf:deploy username="${sf.username}" password="${sf.password}" serverurl="${sf.serverurl}" maxPoll="${sf.maxPoll}" deployRoot="src" />
